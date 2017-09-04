@@ -1,0 +1,40 @@
+<?php 
+if(isset($_POST['email'])){
+    $to = "matt.r.yao@gmail.com"; // this is your Email address
+    $from = $_POST['email']; // this is the sender's Email address
+    $name = $_POST['name'];
+    $subject = "Form submission";
+    // $subject2 = "Copy of your form submission";
+    $message = $name . " wrote the following:" . "\n\n" . $_POST['message'];
+    // $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
+
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    // mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $name . ", I will contact you shortly!";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+    
+if (!empty ($_POST['email']) && ($_POST['message'])) {
+  mail($to, $subject, $message, $header);
+echo "Thank you $name, your message has been received.";
+exit;
+}
+
+if ( (empty ($_POST['email'])) && (empty ($_POST['message'])) ) {
+echo "ERROR, you did not fill in the <b>Email</b> and the <b>message</b> body.";
+exit;
+}
+
+elseif (empty ($_POST['email'])) {
+echo "ERROR, you did not fill in your Email address.";
+exit;
+}
+
+elseif (empty ($_POST['message'])) {
+echo "ERROR, you did not fill in the message body.";
+exit;
+}
+
+?>
